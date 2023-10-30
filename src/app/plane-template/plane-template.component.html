@@ -1,0 +1,17 @@
+<button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon" (click)="generatePDF()">
+    <mat-icon>save_alt</mat-icon>
+</button>
+
+<mat-card class="contentToPrint" id="invoice" #invoice>
+    <div class="section-name-details">
+        <h1>{{resumeDetails?.Name | uppercase}}</h1>
+        <h3>{{resumeDetails?.Current_role}}</h3>
+        <p><mat-icon aria-hidden="false" aria-label="Example home icon"
+                fontIcon="home"></mat-icon>{{resumeDetails?.Details.Contact.Email}}</p> 
+        <p><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+            {{resumeDetails?.Details.Contact.LinkedIn_Profile}}</p>
+        <p><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+            {{resumeDetails?.Details.Contact.mobileNumber}}</p>
+    </div>
+
+</mat-card>

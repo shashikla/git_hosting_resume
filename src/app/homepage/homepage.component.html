@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-content>
+        <h2>Enter Your Name</h2>
+        <form action="" #nameForm = "ngForm" (ngSubmit)="sendData(nameForm.value)">
+            <div class="input-name">
+                <input class="input" type="text" placeholder="First Name" name="name" ngModel />
+                <button mat-raised-button color="primary" type="submit">Next</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

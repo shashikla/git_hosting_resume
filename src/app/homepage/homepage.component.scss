@@ -1,0 +1,59 @@
+.mat-mdc-card{
+    width: fit-content;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    text-align: center;
+    box-sizing: border-box;
+    width: 500px;
+    padding: 20px;
+   
+}
+
+.input-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* border: 1px solid #BDBDBD; */
+    padding: 15px;
+    border-radius: 30px;
+}
+
+.input-name .input[type="text" i]{
+    height: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #EEEEEE;
+    border-radius: 20px 0 0 20px;
+    padding: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    font-size: 20px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline{
+    display: none !important;
+}
+
+.mat-mdc-raised-button {
+    background-color: #212121;
+    counter-reset: #FAFAFA;
+    border-radius: 0 20px 20px 0;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 100px;
+    padding: 2px;
+}
+
+::ng-deep .custom-style{
+    background-color:brown;
+    color:white;
+    width: fit-content;
+    margin: auto !important;
+    display: flex;
+  }
+
+ 
+
