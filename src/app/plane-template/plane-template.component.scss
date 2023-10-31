@@ -1,8 +1,72 @@
+.header-section{
+    padding: 20PX 10PX;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.contentToPrint {
+    background: #d7e4eb;
+}
+
 .section-name-details {
     p {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        gap: 10px;
+        // gap: 10px;
+    }
+
+    h1 {
+        color: #a96366;
+        font-family: 'Anton', sans-serif;
+    }
+}
+
+#resume {
+    background: #d7e4eb;
+}
+
+.mat-divider {
+    border-top-color: #9c6a6a;
+}
+
+// .work-exp .work-exp-list:not(:last-child)  {
+//     border-bottom: 1px solid #9c6a6a;
+// }
+
+// .work-exp .work-exp-list:last-child {
+//     border-bottom: 3px solid #9c6a6a;
+// }
+
+.mat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.material-icons {
+    font-size: 15px;
+}
+
+.head-chip {
+    color: #a96366;
+    // text-transform: capitalize !important;
+}
+
+.company-date {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.employment-date {
+    color: #828282;
+}
+
+.details-head {
+
+    h3 {
+        font-weight: 500;
     }
 }

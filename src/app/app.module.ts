@@ -18,13 +18,17 @@ import {MatListModule} from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { PlaneTemplateComponent } from './plane-template/plane-template.component';
+import {MatDividerModule} from '@angular/material/divider';
+import { FormResumeComponent } from './form-resume/form-resume.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     ResumeComponent,
-    PlaneTemplateComponent
+    PlaneTemplateComponent,
+    FormResumeComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,8 @@ import { PlaneTemplateComponent } from './plane-template/plane-template.componen
     HttpClientModule,
     MatListModule,
     MatSlideToggleModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

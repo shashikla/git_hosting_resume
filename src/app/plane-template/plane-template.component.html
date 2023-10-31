@@ -1,17 +1,59 @@
-<button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon" (click)="generatePDF()">
-    <mat-icon>save_alt</mat-icon>
-</button>
+<div class="header-section">
+    <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon" (click)="generatePDF()">
+        <mat-icon>save_alt</mat-icon>
+    </button>
+    <button mat-button color="warn" aria-label="Example icon button with a filter list icon" [routerLink]="['/form-fill', name]">
+        Create New
+    </button>
+</div>
 
 <mat-card class="contentToPrint" id="invoice" #invoice>
-    <div class="section-name-details">
-        <h1>{{resumeDetails?.Name | uppercase}}</h1>
-        <h3>{{resumeDetails?.Current_role}}</h3>
-        <p><mat-icon aria-hidden="false" aria-label="Example home icon"
-                fontIcon="home"></mat-icon>{{resumeDetails?.Details.Contact.Email}}</p> 
-        <p><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
-            {{resumeDetails?.Details.Contact.LinkedIn_Profile}}</p>
-        <p><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
-            {{resumeDetails?.Details.Contact.mobileNumber}}</p>
-    </div>
-
+    <mat-card-content id="resume">
+        <div class="section-name-details">
+            <h1 >{{resumeDetails?.Name | uppercase}}</h1>
+            <h3 style="font-weight: 500;">{{resumeDetails?.Current_role}}</h3>
+            <p><mat-icon aria-hidden="false" aria-label="Example home icon"
+                    fontIcon="home"></mat-icon>{{resumeDetails?.Details.Contact.Email}}</p>
+            <p><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+                {{resumeDetails?.Details.Contact.LinkedIn_Profile}}</p>
+            <!-- <p><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+            {{resumeDetails?.Details.Contact.mobileNumber}}</p> -->
+        </div>
+        <mat-divider></mat-divider>
+        <div class="section-about details-head">
+            <!-- <h2 class="head-chip">About Me</h2> -->
+            <div style="padding: 10px 0;">
+                <p>{{resumeDetails?.Description}}</p>
+            </div>
+        </div>
+        <div class="section-work-exp details-head">
+            <h2 class="head-chip">Work Experience</h2>
+            <mat-divider></mat-divider>
+            <div class="work-exp" style="padding: 10px 0;" *ngFor="let exp of resumeDetails?.Details.Work_Experience">
+                <div class="work-exp-list">
+                    <h3>{{exp.Job_role}}</h3>
+                    <div class="company-date">
+                    <p>{{exp.Company}}</p>
+                    <p class="employment-date">{{exp.Dates_of_Employment}}</p>
+                    </div>
+                    <p>{{exp.Location}}</p>
+                    <ul *ngFor="let resp of exp.Responsibilities">
+                        <li>{{resp}}</li>
+                    </ul>
+                </div>
+                <!-- <div>HIIIIII{{resumeDetails?.Details.Work_Experience}}</div>          -->
+            </div>
+        </div>
+        <div class="section-education details-head">
+            <h2 class="head-chip">Education History</h2>
+            <mat-divider></mat-divider>
+            <div style="padding: 10px 0;" *ngFor="let edu of resumeDetails?.Details.Education">
+                <h3>{{edu.Degree}}</h3>
+                <div class="company-date">
+                <p>{{edu.Institution}}</p>
+                <p class="employment-date">{{edu.Graduation_Date}}</p>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
 </mat-card>
