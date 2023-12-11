@@ -20,7 +20,24 @@ export class FormResumeComponent {
               private userService:UserDataService){
 
   }
-  userData: User[] = [];
+  userData: any = {
+    Details:{
+      Contact:{
+        Email : '',
+        LinkedIn_Profile:''
+      },
+      Education:[],
+      Work_Experience:[
+        {
+          Job_role:'',
+          Company:'',
+          Location:'',
+          Dates_of_Employment:'',
+          Responsibilities:[]
+        }
+      ]
+    }
+  };
   resumeDetails: any;
   name: string = "";
 
@@ -35,6 +52,20 @@ export class FormResumeComponent {
       });
     });
   });
+ }
+
+ submitData(){
+ console.log(this.userData);
+ 
+  // this.userService.addData(this.userData)
+ }
+ addNewEducation(){
+  this.userData.Education.push({
+    Degree:'',
+    Institution:'',
+    Location:'',
+    Graduation_Date:''
+  })
  }
 
 }

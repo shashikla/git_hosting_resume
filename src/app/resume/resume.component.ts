@@ -71,9 +71,10 @@ name:string="";
       filname : 'resume.pdf',
       image : { type: 'jpeg', quality: 0.98 },
       html2canvas : { },
-      jsPDF : { format: 'a4', orientation: 'portrait'},
+      // format: 'a4', 
+      jsPDF : { orientation: 'portrait', },
       mode: 'legacy',
-      margin: [0.2, 0.1, 0.6, 0.2],
+      margin: [0.2, 0.6, 0.6, 0.2],
       pagebreak: { after: 'section'}
     };
     html2pdf().from(elementHTML).set(pdfOptions).save('resume.pdf');

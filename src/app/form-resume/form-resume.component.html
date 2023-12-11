@@ -1,5 +1,44 @@
 <mat-card>
     <mat-card-content>
         <h1 style="text-align: center;">Fill Details</h1>
+        <!-- your-component.component.html -->
+        <form (ngSubmit)="submitData()">
+            <mat-form-field>
+                <input matInput placeholder="Name" [(ngModel)]="userData.Name" name="name">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Enter Role" [(ngModel)]="userData.Current_role" name="role">
+            </mat-form-field>
+            <mat-form-field>
+                <textarea matInput placeholder="Give summary for resume" [(ngModel)]="userData.Description"
+                    name="desc"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="abc@gmail.com" [(ngModel)]="userData.Details.Contact.Email" name="email">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Profile Url" [(ngModel)]="userData.Details.Contact.LinkedIn_Profile"
+                    name="name">
+            </mat-form-field>
+            <p>demo</p>
+            <div *ngFor="let education of userData.Education; let i=index">
+                <h3>Education {{ i + 1 }}</h3>
+                <mat-form-field>
+                    <input matInput placeholder="Degree" [(ngModel)]="education.Degree" name="degree_{{i}}">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Degree" [(ngModel)]="education.Institution" name="degree_{{i}}">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Degree" [(ngModel)]="education.Location" name="degree_{{i}}">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Degree" [(ngModel)]="education.Graduation_Date" name="degree_{{i}}">
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary" (click)="addNewEducation()">Add New</button>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </form>
+
     </mat-card-content>
 </mat-card>

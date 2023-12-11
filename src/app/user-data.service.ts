@@ -8,17 +8,21 @@ import { Observable } from 'rxjs';
 })
 export class UserDataService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getUserDetailsUrl = "http://localhost:4111/users/save";
 
 
-  getAllData() : Observable<any>{
+  getAllData(): Observable<any> {
     return this.http.get(this.getUserDetailsUrl);
   }
 
 
-  getDataByUser(name:any): Observable<any>{
+  getDataByUser(name: any): Observable<any> {
     return this.http.get(`http://localhost:4111/users/${name}`);
+  }
+
+  addData(data: any) {
+    return this.http.post(`http://localhost:4111/users/save`, data)
   }
 }
