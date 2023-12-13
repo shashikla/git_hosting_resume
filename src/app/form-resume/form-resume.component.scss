@@ -6,3 +6,11 @@
     position: absolute;
     // text-align: center;
 }
+.input-row-1{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.save-button{
+    text-align: end;
+}
