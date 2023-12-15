@@ -11,6 +11,16 @@
 }
 .save-button{
     text-align: end;
+    // border: 1px solid ;
+}
+.save-button button{
+    background-color:#1e81b0;
+    padding: 0 10px;
+}
+.save-btn{
+    background-color: #063970;
+    color: #fff;
+   
 }
 
 .Header-and-button{
@@ -24,14 +34,34 @@
     padding: 0 10px;
     margin-bottom:  20px;
     border-radius: 3px;
+    h3{
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
 }
 
 .fill-details{
     background-color: #063970;
     color: #fff;
-    padding: 10px 0;
+    padding: 10px 5px;
+    text-transform: uppercase;
+    // font-weight: 500;
     // #d5efee
+}
+.Header-and-button button{
+    color: #fff;
+    border: 2px solid #fff;
+    background: none;
 }
 :host ::ng-deep .this-feels-better div.mat-input-wrapper.mat-form-field-wrapper{
     padding-bottom: 0;
+  }
+
+  @media only screen and (max-width: 650px) and (min-width: 300px)  {
+    .input-row-1{
+        flex-direction: column;
+    }
+    .mat-mdc-form-field {
+    width: 100% !important;
+    }
   }

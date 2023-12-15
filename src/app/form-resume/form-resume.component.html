@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-content>
-        <h1 style="text-align: center;color: #1e81b0;" >Fill Details</h1>
+        <h1 style="text-align: center;color: #1e81b0;font-weight: 500;text-transform: uppercase;" >Fill Details</h1>
         <!-- <div class="fill-details-bg" class="fill-details">
         </div> -->
         <!-- your-component.component.html -->
@@ -32,7 +32,7 @@
             <div class="fill-details-bg">
                 <DIV class="Header-and-button fill-details">
                     <h3 style="margin: 0;">Education </h3> 
-                    <button mat-button (click)="openNewInput('Education')">
+                    <button mat-mini-fab (click)="openNewInput('Education')">
                         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
                     </button>
                 </DIV>
@@ -55,7 +55,7 @@
                             name="degree_{{i}}">
                     </mat-form-field>
 
-                    <button mat-button (click)="remove(i)" *ngIf="i>=2">
+                    <button mat-mini-fab (click)="remove(i)" *ngIf="i>=2">
                         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
                     </button>
                 </div>
@@ -64,7 +64,8 @@
             <!-- Work Experience -->
             <div class="fill-details-bg">
                 <div class="Header-and-button fill-details">
-                    <h3 style="margin: 0;">work Experience </h3> <button mat-button (click)="openNewInput('work-experience')">Add
+                    <h3 style="margin: 0;">work Experience </h3> <button mat-mini-fab (click)="openNewInput('work-experience')">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
                     </button>
                 </div>
             </div>
@@ -99,7 +100,7 @@
                 </div>
                 <div>
 
-                    <button mat-button (click)="remove(i)" *ngIf="i>=2">
+                    <button mat-mini-fab (click)="remove(i)" *ngIf="i>=2">
                         Delete
                     </button>
                 </div>
@@ -111,7 +112,8 @@
             <div class="fill-details-bg">
             <div class="Header-and-button fill-details">
                 <h3 style="margin: 0;" >Certifications</h3> 
-                <button mat-button (click)="openNewInput('Certifications')">Add
+                <button mat-mini-fab (click)="openNewInput('Certifications')">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
                 </button>
             </div>
             </div>
@@ -131,7 +133,7 @@
                     </mat-form-field>
                 </div>
                 <button mat-button (click)="removeCertification(i)" *ngIf="i>=2">
-                    Delete
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
                 </button>
             </div>
             <!-- Technologies Section -->
@@ -169,7 +171,9 @@
 
             <!-- Footer to Save All Details -->
             <div class="save-button">
-                <button mat-raised-button color="primary" type="submit">Save</button>
+                <button mat-raised-button color="primary" type="submit">
+                    Save
+            </button>
             </div>
         </form>
 
