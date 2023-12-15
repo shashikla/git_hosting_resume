@@ -53,6 +53,19 @@
     border: 2px solid #fff;
     background: none;
 }
+.mat-mdc-form-field {
+    width: 100% ;
+    }
+    .mat-mdc-form-field{
+        padding-bottom: 0;
+    }
+    ::ng-deep .mdc-text-field--focused .mdc-notched-outline > * {
+        border-color: #d5efee !important;
+      }
+    ::ng-deep .mdc-notched-outline > * {
+        border-color: #d5efee !important;
+      }
+
 :host ::ng-deep .this-feels-better div.mat-input-wrapper.mat-form-field-wrapper{
     padding-bottom: 0;
   }

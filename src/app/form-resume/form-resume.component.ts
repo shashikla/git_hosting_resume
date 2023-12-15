@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserDataService } from '../user-data.service';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 interface User {
@@ -14,14 +17,13 @@ interface User {
 @Component({
   selector: 'app-form-resume',
   templateUrl: './form-resume.component.html',
-  styleUrls: ['./form-resume.component.scss']
+  styleUrls: ['./form-resume.component.scss'],
+  // imports:[MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule]
 })
 export class FormResumeComponent {
 
-
   constructor(private route: ActivatedRoute,
     private userService: UserDataService) {
-
   }
 
   technologies: string[] = [];
