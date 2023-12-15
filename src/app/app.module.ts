@@ -20,6 +20,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { PlaneTemplateComponent } from './plane-template/plane-template.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { FormResumeComponent } from './form-resume/form-resume.component';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import { FormResumeComponent } from './form-resume/form-resume.component';
     MatListModule,
     MatSlideToggleModule,
     MatSidenavModule,
-    MatDividerModule
+    MatDividerModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

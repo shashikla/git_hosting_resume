@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserDataService } from '../user-data.service';
+import { MatChipInputEvent } from '@angular/material/chips';
+
 
 interface User {
   Name: string;
@@ -16,11 +18,26 @@ interface User {
 })
 export class FormResumeComponent {
 
+
   constructor(private route: ActivatedRoute,
     private userService: UserDataService) {
 
   }
+
+  technologies: string[] = [];
+  skills: string[] = [];
+  responsibilities: string[] = [];
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  separatorKeysCodes: number[] = [13, 188];
+
+
+
   userData: any = {
+    Name: '',
+    Description: '',
+    Current_role: '',
     Details: {
       Contact: {
         Email: '',
@@ -38,44 +55,85 @@ export class FormResumeComponent {
           Company: '',
           Location: '',
           Dates_of_Employment: '',
-          Responsibilities: ['']
+          Responsibilities: this.responsibilities
         }
-      ]
+      ],
+      Technologies: this.technologies,
+      Skills: this.skills,
+      Certification: [
+        {
+          Certification_Name: '',
+          Certifying_Body: '',
+          Date_of_Certification: ''
+        }
+      ],
     }
   };
   resumeDetails: any;
   name: string = "";
   showNewEducationInput = false;
   newResponsibility: string = '';
+  newTechnology: string = '';
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      const userName = (params['name']).toLowerCase();
-      this.name = userName.toUpperCase();
-      this.userService.getDataByUser(userName).subscribe((user) => {
-        console.log({ user: user });
-        this.resumeDetails = user.find((ele: any) => {
-          return ele;
-        });
-      });
-    });
+    // this.route.params.subscribe(params => {
+    //   const userName = (params['name']).toLowerCase();
+    //   this.name = userName.toUpperCase();
+    //   this.userService.getDataByUser(userName).subscribe((user) => {
+    //     console.log({ user: user });
+    //     this.resumeDetails = user.find((ele: any) => {
+    //       return ele;
+    //     });
+    //   });
+    // });
   }
+
+
 
   submitData() {
+    // this.userData.Details.Work_Experience.map((ele)=>{
+    //   // console.log(ele.Responsibilities.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== ''));
+    //   return ele.Responsibilities?.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== '');
+    // });
+  
+
+    // data.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== '');
+    this.userService.addData(this.userData);
     console.log(this.userData);
-
-    // this.userService.addData(this.userData)
   }
-  addNewEducation(value: any) {
-    console.log(this.userData.Details.Education[value]);
-
-    this.userData.Details.Education.push({
-      Degree: '',
-      Institution: '',
-      Location: '',
-      Graduation_Date: ''
-    })
+  openNewInput(value:any){
+    if(value == "Education"){
+      this.userData.Details.Education.push({
+        Degree: '',
+        Institution: '',
+        Location: '',
+        Graduation_Date: ''
+      })
+    }else if(value == "Certifications"){
+      this.userData.Details.Certification.push({
+        Certification_Name: '',
+        Certifying_Body: '',
+        Date_of_Certification: ''
+      })
+    }else if(value == "work-experience"){
+      this.userData.Details.Work_Experience.push({
+        Job_role: '',
+        Company: '',
+        Location: '',
+        Dates_of_Employment: '',
+        Responsibilities: this.responsibilities
+      })
+    }
   }
+  // addNewEducation() {
+  //   this.userData.Details.Education.push({
+  //     Degree: '',
+  //     Institution: '',
+  //     Location: '',
+  //     Graduation_Date: ''
+  //   })
+  // }
+
   addNewExperience(value: any) {
     console.log(this.userData.Details.Work_Experience[value]);
     this.userData.Details.Work_Experience.push({
@@ -83,22 +141,80 @@ export class FormResumeComponent {
       Company: '',
       Location: '',
       Dates_of_Employment: '',
-      Responsibilities: []
+      Responsibilities: this.newResponsibility
     })
   }
-  addNewResponsibility(value: any) {
-    console.log("****",value);
-    
-    value.Responsibilities.push('');
-    this.newResponsibility = '';
-  }
 
+  // addNewCertificate(value: any) {
+  //   console.log("value",value);
+  //   this.userData.Details.Certification.push({
+  //     Certification_Name: '',
+  //     Certifying_Body: '',
+  //     Date_of_Certification: ''
+  //   })
+  // }
+  content: string = ''; // Variable to store textarea content
+  contentArray: string[] = []; 
+
+  addNewResponsibility(value:any) {
+  this.content = value;
+  this.content = value.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== '');
+  console.log(this.content);
+  }
   remove(value: any) {
     this.userData.Details.Education.splice(value, 1);
+  }
+  removeCertification(value: any) {
+    this.userData.Details.Certification.splice(value, 1);
   }
 
   deleteResponsibility(index: any) {
     this.userData.Details.Work_Experience.Responsibilities.splice(index, 1);
   }
 
+  addTechnology(event: MatChipInputEvent): void {
+    let value = (event.value || '').trim();
+    value = value
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.toUpperCase())
+      .join(' ');
+
+    if (value) {
+      console.log(value);
+      
+      this.technologies.push(value);
+    }
+    event.chipInput!.clear();
+  }
+
+  clearInput(input: any): void {
+    input.value = '';
+    this.newTechnology = '';
+  }
+
+  removeTechnology(tech: string): void {
+    const index = this.technologies.indexOf(tech);
+    if (index !== -1) {
+      this.technologies.splice(index, 1);
+    }
+  }
+
+  addSkillTechnology(event: MatChipInputEvent): void {
+    let value = (event.value || '').trim();
+    value = value.toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+    if (value) {
+      this.skills.push(value);
+    }
+    event.chipInput!.clear();
+  }
+  removeSkillTechnology(tech: string): void {
+    const index = this.skills.indexOf(tech);
+    if (index !== -1) {
+      this.skills.splice(index, 1);
+    }
+  }
 }

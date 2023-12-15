@@ -23,6 +23,7 @@ export class UserDataService {
   }
 
   addData(data: any) {
+  console.log(data);
     return this.http.post(`http://localhost:4111/users/save`, data)
   }
 }

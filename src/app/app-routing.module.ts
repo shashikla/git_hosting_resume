@@ -17,7 +17,8 @@ const routes: Routes = [
     path : 'details/:name', component: PlaneTemplateComponent
   },
   {
-    path : 'submit-data/:name', component: FormResumeComponent
+    path : 'submit-data', component: FormResumeComponent
+    // path : 'submit-data/:name', component: FormResumeComponent
   }
 ];
 
