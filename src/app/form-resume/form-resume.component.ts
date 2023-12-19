@@ -5,7 +5,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { Router } from '@angular/router';
 
 interface User {
   Name: string;
@@ -21,9 +21,10 @@ interface User {
   // imports:[MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule]
 })
 export class FormResumeComponent {
+  formSubmit: boolean = false;
 
   constructor(private route: ActivatedRoute,
-    private userService: UserDataService) {
+    private userService: UserDataService, private router:Router) {
   }
 
   technologies: string[] = [];
@@ -98,11 +99,24 @@ export class FormResumeComponent {
     //   return ele.Responsibilities?.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== '');
     // });
   
-
+    this.formSubmit = true
     // data.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== '');
-    this.userService.addData(this.userData);
-    console.log(this.userData);
+    // this.userService.addData(this.userData).subscribe(
+    //   response => {
+    //     // Handle successful response
+    //     console.log('Response:', response);
+    //     this.formSubmit = true
+    //   },
+    //   error => {
+    //     // Handle error
+    //     console.error('Error:', error);
+    //   }
+    // );
+    // console.log(this.userData);
+
   }
+
+
   openNewInput(value:any){
     if(value == "Education"){
       this.userData.Details.Education.push({
@@ -218,5 +232,36 @@ export class FormResumeComponent {
     if (index !== -1) {
       this.skills.splice(index, 1);
     }
+  }
+  showForm(e:any){
+    // console.log("name here..", e);
+    this.userService.getDataByUser(e).subscribe((user)=>{
+      console.log({user:user.length});
+      if(user.length > 1){
+        this.router.navigate(['/resume-card',e])
+      }
+    });
+    // this.userService.getAllData().subscribe((data) => {
+    //   data.find((ele)=>{
+    //    console.log(ele);
+    //     if((ele.Name).toLowerCase() === (e).toLowerCase()){
+    //       // this.router.navigate(['/details',e])
+    //     }
+    //   })     
+      
+    // })
+    //   this.userdata = data;
+    //     const result = this.userdata.find((ele)=>{
+    //       console.log(ele)
+    //       if((ele.Name).toLowerCase() === (e.name).toLowerCase()){
+    //       this.router.navigate(['/details',ele.Name]);
+    //       }
+    //       else{
+    //         this.showSnackbarTopPosition('User Not Found','Done','1000');
+    //       }
+    //       })
+    //  });
+    // this.showName(e.name);
+    // 
   }
 }

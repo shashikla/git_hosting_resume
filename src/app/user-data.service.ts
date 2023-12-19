@@ -22,8 +22,12 @@ export class UserDataService {
     return this.http.get(`http://localhost:4111/users/${name}`);
   }
 
+  getDataByID(id: any): Observable<any> {
+    return this.http.get(`http://localhost:4111/users/${id}`);
+  }
+
   addData(data: any) {
-  console.log(data);
+  console.log({data:data});
     return this.http.post(`http://localhost:4111/users/save`, data)
   }
 }

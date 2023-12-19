@@ -35,17 +35,23 @@ export class PlaneTemplateComponent {
   name: string = "";
 
   ngOnInit(): void {
+    // this.route.params.subscribe(params => {
+    //   const userName = (params['name']).toLowerCase();
+    //   this.name = userName.toUpperCase();
+    //   this.userService.getDataByUser(userName).subscribe((user)=>{
+    //     console.log({user:user});
+    //     this.resumeDetails = user.find((ele:any)=>{
+    //       return ele;
+    //     });
+    //   });
+    // });
     this.route.params.subscribe(params => {
-      const userName = (params['name']).toLowerCase();
-      this.name = userName.toUpperCase();
-      this.userService.getDataByUser(userName).subscribe((user)=>{
+      let id = params['id'];
+      console.log(id);
+      this.userService.getDataByID(id).subscribe((user)=>{
         console.log({user:user});
-        this.resumeDetails = user.find((ele:any)=>{
-          return ele;
-        });
-      });
-    });
-
+      })
+    })
     
   }
 
