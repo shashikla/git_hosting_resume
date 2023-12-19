@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserDataService } from '../user-data.service';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Router } from '@angular/router';
+import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 interface User {
   Name: string;
@@ -18,13 +20,12 @@ interface User {
   selector: 'app-form-resume',
   templateUrl: './form-resume.component.html',
   styleUrls: ['./form-resume.component.scss'],
-  // imports:[MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule]
 })
 export class FormResumeComponent {
   formSubmit: boolean = false;
 
   constructor(private route: ActivatedRoute,
-    private userService: UserDataService, private router:Router) {
+    private userService: UserDataService, private router:Router, private formBuilder:FormBuilder, private snackBar:MatSnackBar) {
   }
 
   technologies: string[] = [];
@@ -34,8 +35,9 @@ export class FormResumeComponent {
   removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [13, 188];
+  ngForm! : FormGroup;
 
-
+  // email = new FormControl('', [Validators.required, Validators.email]);
 
   userData: any = {
     Name: '',
@@ -79,18 +81,28 @@ export class FormResumeComponent {
   newTechnology: string = '';
 
   ngOnInit() {
-    // this.route.params.subscribe(params => {
-    //   const userName = (params['name']).toLowerCase();
-    //   this.name = userName.toUpperCase();
-    //   this.userService.getDataByUser(userName).subscribe((user) => {
-    //     console.log({ user: user });
-    //     this.resumeDetails = user.find((ele: any) => {
-    //       return ele;
-    //     });
-    //   });
-    // });
+    this.ngForm = this.formBuilder.group({
+      Name: ['', Validators.required],
+      Current_role: ['', Validators.required],
+      Details: this.formBuilder.group({
+        Contact: this.formBuilder.group({
+          Email: ['', [Validators.required, Validators.email]]
+        })
+      })
+    })
   }
 
+  showSnackbarTopPosition(content:any, action:any, duration:any) {
+    let sb = this.snackBar.open(content, action, {
+      duration: duration,
+      panelClass: ['custom-style'],
+      verticalPosition: 'top',
+      horizontalPosition: 'end',
+    });
+    sb.onAction().subscribe(() => {
+      sb.dismiss();
+    });
+  }
 
 
   submitData() {
@@ -98,8 +110,12 @@ export class FormResumeComponent {
     //   // console.log(ele.Responsibilities.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== ''));
     //   return ele.Responsibilities?.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== '');
     // });
-  
-    this.formSubmit = true
+  if(this.ngForm.valid){
+    this.formSubmit = true;
+  }else{
+    console.log("Missing Data ..");
+    this.showSnackbarTopPosition("Fill the required Data","Done",100000)
+  }
     // data.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== '');
     // this.userService.addData(this.userData).subscribe(
     //   response => {

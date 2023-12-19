@@ -12,7 +12,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatInputModule} from '@angular/material/input';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -48,7 +48,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatSlideToggleModule,
     MatSidenavModule,
     MatDividerModule,
-    MatChipsModule
+    MatChipsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

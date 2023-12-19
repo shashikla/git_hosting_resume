@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-content>
-        <h1 style="text-align: center;color: #1e81b0;font-weight: 500;text-transform: uppercase;" >Fill Details</h1>
+        <h1 style="text-align: center;color: #1e81b0;font-weight: 500;text-transform: uppercase;">Fill Details</h1>
         <!-- <div class="fill-details-bg" class="fill-details">
         </div> -->
         <!-- your-component.component.html -->
@@ -10,34 +10,39 @@
             </div>
             <div class="input-row-1">
                 <mat-form-field appearance="outline">
-                    <input matInput placeholder="Name" [(ngModel)]="userData.Name" name="name">
+                    <input matInput placeholder="Name" [(ngModel)]="userData.Name" name="name" #name="ngModel" required>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <input matInput placeholder="Enter Role" [(ngModel)]="userData.Current_role" name="role">
-                </mat-form-field >
+                </mat-form-field>
                 <mat-form-field appearance="outline">
                     <input matInput placeholder="abc@gmail.com" [(ngModel)]="userData.Details.Contact.Email"
                         name="email">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <input matInput placeholder="Profile Url" [(ngModel)]="userData.Details.Contact.LinkedIn_Profile"
-                        name="name">
+                        name="profile">
                 </mat-form-field>
             </div>
+
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+                <div *ngIf="name.errors?.['required']">*Name is required.</div>
+            </div>
+
             <mat-form-field appearance="outline" style="width: 50%;">
                 <textarea matInput placeholder="Give summary for resume" [(ngModel)]="userData.Description"
                     name="desc"></textarea>
             </mat-form-field>
-            
+
             <div class="fill-details-bg">
                 <DIV class="Header-and-button fill-details">
-                    <h3 style="margin: 0;">Education </h3> 
+                    <h3 style="margin: 0;">Education </h3>
                     <button mat-mini-fab (click)="openNewInput('Education')">
                         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
                     </button>
                 </DIV>
             </div>
-            
+
             <div *ngFor="let education of userData.Details.Education; let i=index">
                 <div class="input-row-1">
                     <mat-form-field appearance="outline">
@@ -60,11 +65,12 @@
                     </button>
                 </div>
             </div>
-            
+
             <!-- Work Experience -->
             <div class="fill-details-bg">
                 <div class="Header-and-button fill-details">
-                    <h3 style="margin: 0;">work Experience </h3> <button mat-mini-fab (click)="openNewInput('work-experience')">
+                    <h3 style="margin: 0;">work Experience </h3> <button mat-mini-fab
+                        (click)="openNewInput('work-experience')">
                         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
                     </button>
                 </div>
@@ -72,7 +78,7 @@
             <div *ngFor="let exp of userData.Details.Work_Experience; let i=index">
 
                 <div class="input-row-1">
-                    <mat-form-field appearance="outline"> 
+                    <mat-form-field appearance="outline">
                         <input matInput placeholder="Role" [(ngModel)]="exp.Job_role" name="exp.Job_role" required>
                     </mat-form-field>
                     <div *ngIf="exp.Job_role.invalid && (exp.Job_role.dirty || exp.Job_role.touched)" class="alert">
@@ -110,12 +116,12 @@
 
             <!-- Certifications Section -->
             <div class="fill-details-bg">
-            <div class="Header-and-button fill-details">
-                <h3 style="margin: 0;" >Certifications</h3> 
-                <button mat-mini-fab (click)="openNewInput('Certifications')">
-                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
-                </button>
-            </div>
+                <div class="Header-and-button fill-details">
+                    <h3 style="margin: 0;">Certifications</h3>
+                    <button mat-mini-fab (click)="openNewInput('Certifications')">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
+                    </button>
+                </div>
             </div>
             <div *ngFor="let exp of userData.Details.Certification; let i=index">
                 <div class="input-row-1">
@@ -138,7 +144,7 @@
             </div>
             <!-- Technologies Section -->
             <div class="fill-details-bg">
-            <h3 style="margin: 0;" class="fill-details">Technologies</h3>
+                <h3 style="margin: 0;" class="fill-details">Technologies</h3>
             </div>
             <mat-form-field appearance="outline">
                 <mat-chip-grid #techGrid>
@@ -154,7 +160,7 @@
 
             <!-- Skills Section -->
             <div class="fill-details-bg">
-            <h3 class="fill-details">Skills</h3>
+                <h3 class="fill-details">Skills</h3>
             </div>
             <mat-form-field appearance="outline">
                 <mat-chip-grid #techSkillGrid>
@@ -173,10 +179,10 @@
             <div class="save-button">
                 <button mat-raised-button color="primary" type="submit">
                     Save
-            </button>
-            <button mat-raised-button color="primary" *ngIf="formSubmit" (click)="showForm(userData.Name)">
+                </button>
+                <button mat-raised-button color="primary" *ngIf="formSubmit" (click)="showForm(userData.Name)">
                     View Template
-            </button>
+                </button>
             </div>
         </form>
 
