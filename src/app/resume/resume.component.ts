@@ -65,11 +65,14 @@ export class ResumeComponent implements OnInit {
   }
 
   viewTemplate(data) {
-    console.log(data);
-    this.router.navigate(['/details',data._id])
-    this.userService.getDataByID(data._id).subscribe((user) => {
-      console.log(user);
-    })
+    console.log(data.Name, data._id);
+    this.router.navigate(['/details',data.Name, data._id])
+    // this.router.navigate(['/details'],{
+    //   state: {resumeData : data}
+    // })
+    // this.userService.getDataByID(data._id).subscribe((user) => {
+    //   console.log(user);
+    // })
   }
 
 }

@@ -14,7 +14,8 @@ const routes: Routes = [
     component: HomepageComponent
   },
   {
-    path : 'details/:id', component: PlaneTemplateComponent
+    path : 'details/:name/:id', component: PlaneTemplateComponent,
+    // data: { resumeData:'data'}
   },
   {
     path : 'resume-card/:name', component: ResumeComponent

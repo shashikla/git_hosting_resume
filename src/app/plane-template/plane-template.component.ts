@@ -33,28 +33,37 @@ export class PlaneTemplateComponent {
   userData: User[] = [];
   resumeDetails: any;
   name: string = "";
+  resumeData: any[] = [];
 
   ngOnInit(): void {
+    // this.route.params.subscribe(params => {
+    //   console.log(params);
+      
+    //   const userName = (params['id']).toLowerCase();
+    //   this.name = userName.toUpperCase();
+    //   this.userService.getDataByUser(userName).subscribe((user)=>{
+    //     console.log({user:user});
+    //     this.resumeDetails = user.find((ele:any)=>{
+    //       return ele;
+    //     });
+    //   });
+    // });
+
     this.route.params.subscribe(params => {
       console.log(params);
       
-      const userName = (params['id']).toLowerCase();
+      const userName = (params['name']).toLowerCase();
       this.name = userName.toUpperCase();
-      this.userService.getDataByUser(userName).subscribe((user)=>{
+      const userID = (params['id']);
+
+      this.userService.getDataByID(userName,userID).subscribe((user)=>{
         console.log({user:user});
         this.resumeDetails = user.find((ele:any)=>{
           return ele;
         });
       });
     });
-    // this.route.params.subscribe(params => {
-    //   let id = params['id'];
-    //   console.log(id);
-    //   this.userService.getDataByID(id).subscribe((user)=>{
-    //     console.log({user:user});
-    //   })
-    // })
-    
+
   }
 
   generatePDF() {

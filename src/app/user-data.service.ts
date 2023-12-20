@@ -22,8 +22,8 @@ export class UserDataService {
     return this.http.get(`http://localhost:4111/users/${name}`);
   }
 
-  getDataByID(id: any): Observable<any> {
-    return this.http.get(`http://localhost:4111/users/${id}`);
+  getDataByID(name:any,id: any): Observable<any> {
+    return this.http.get(`http://localhost:4111/users/${name}/${id}`);
   }
 
   addData(data: any) {
