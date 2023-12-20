@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import jsPDF from 'jspdf';
+// import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import html2PDF from 'jspdf-html2canvas';
 import { UserDataService } from '../user-data.service';
 import html2pdf from 'html2pdf.js';
+import jsPDF from 'jspdf';
 
 interface User {
   Name: string;
@@ -68,19 +69,49 @@ export class PlaneTemplateComponent {
 
   generatePDF() {
     // // Source HTMLElement or a string containing HTML.
+    const pdf = new jsPDF();
     var elementHTML:any = document.getElementById('invoice');
-
-    const pdfOptions = {
-      // margin:10,
-      filname : 'resume.pdf',
-      image : { type: 'jpeg', quality: 0.98 },
-      html2canvas : { },
-      jsPDF : { format: 'a4', orientation: 'portrait'},
-      mode: 'legacy',
-      margin: [0.2, 0.1, 0.6, 0.2],
-      pagebreak: { after: 'section'}
+    
+    var opt = {
+      margin: 15,
+      filename: "Invoice.pdf",
+      image: {
+        type: "jpeg",
+        quality: 1.0,
+      },
+      html2canvas: {
+        scale: 2,
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait",
+      },
     };
-    html2pdf().from(elementHTML).set(pdfOptions).save('resume.pdf');
+    html2pdf().set(opt).from(elementHTML).save();
+    // html2canvas(elementHTML,  { height: elementHTML.scrollHeight }).then(canvas => {
+    //   const imgData = canvas.toDataURL('image/png');
+    //   const pdf = new jsPDF();
+    //   const imgProps = pdf.getImageProperties(imgData);
+    //   const pdfWidth = pdf.internal.pageSize.getWidth();
+    //   const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    
+    //   pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    //   pdf.save('downloaded.pdf');
+    // });
+
+
+    // const pdfOptions = {
+    //   // margin:10,
+    //   filname : 'resume.pdf',
+    //   image : { type: 'jpeg', quality: 0.98 },
+    //   html2canvas : { },
+    //   jsPDF : { format: 'a4', orientation: 'portrait'},
+    //   mode: 'legacy',
+    //   margin: [0.2, 0.1, 0.6, 0.2],
+    //   pagebreak: { after: 'section'}
+    // };
+    // html2pdf().from(elementHTML).set(pdfOptions).save('resume.pdf');
 
     var data:any = document.getElementById('invoice');
   }

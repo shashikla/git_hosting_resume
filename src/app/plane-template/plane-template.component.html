@@ -55,5 +55,23 @@
                 </div>
             </div>
         </div>
+        <div class="section-education details-head">
+            <h2 class="head-chip">Technologies</h2>
+            <mat-divider></mat-divider>
+            <div  *ngFor="let tec of resumeDetails?.Details.Technologies">
+            <ul>
+                <li>{{tec}}</li>
+            </ul>
+            </div>
+        </div>
+        <div class="section-education details-head">
+            <h2 class="head-chip">Skills</h2>
+            <mat-divider></mat-divider>
+            <div  *ngFor="let tec of resumeDetails?.Details.Skills">
+            <ul>
+                <li>{{tec}}</li>
+            </ul>
+            </div>
+        </div>
     </mat-card-content>
 </mat-card>
