@@ -35,7 +35,7 @@ constructor(private router:Router,
   }
 
   sendData(e:any){
-    console.log("name here..", e.name);
+    console.log("name here..", e);
     this.userService.getAllData().subscribe((data) => {
       this.userdata = data;
         // const result = this.userdata.find((ele)=>{
@@ -50,7 +50,7 @@ constructor(private router:Router,
         const result:any = this.userdata.filter((ele)=>{
           return (ele.Name).toLowerCase() === (e.name).toLowerCase()
         })
-          console.log({Result:result.length});
+          console.log({Result:result});
           // if(result){
           //   // this.router.navigate(['/details',e.name])
           // }
@@ -58,7 +58,7 @@ constructor(private router:Router,
           if(result.length>1){
             this.router.navigate(['/resume-card',e.name])
           }else{
-            this.router.navigate(['/details',e.name])
+            this.router.navigate(['/details',e.name, result[0]._id])
           }
         // const result = this.userdata.filter((ele)=>{
         //   return (ele.Name).toLowerCase() === (e.name).toLowerCase()
