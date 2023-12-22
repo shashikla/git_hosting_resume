@@ -4,6 +4,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PlaneTemplateComponent } from './plane-template/plane-template.component';
 import { FormResumeComponent } from './form-resume/form-resume.component';
+import { DemoFormValidationComponent } from './demo-form-validation/demo-form-validation.component';
 
 
 
@@ -15,14 +16,13 @@ const routes: Routes = [
   },
   {
     path : 'details/:name/:id', component: PlaneTemplateComponent,
-    // data: { resumeData:'data'}
   },
   {
     path : 'resume-card/:name', component: ResumeComponent
   },
   {
-    path : 'submit-data', component: FormResumeComponent
-    // path : 'submit-data/:name', component: FormResumeComponent
+    // path : 'submit-data', component: FormResumeComponent
+    path : 'submit-data', component: DemoFormValidationComponent
   }
 ];
 

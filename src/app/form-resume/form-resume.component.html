@@ -4,7 +4,7 @@
         <!-- <div class="fill-details-bg" class="fill-details">
         </div> -->
         <!-- your-component.component.html -->
-        <form (ngSubmit)="submitData()">
+        <form (ngSubmit)="submitData($event)">
             <div class="fill-details-bg">
                 <h3 class="fill-details">Personal Details</h3>
             </div>
@@ -18,6 +18,11 @@
                 <mat-form-field appearance="outline">
                     <input matInput placeholder="abc@gmail.com" [(ngModel)]="userData.Details.Contact.Email"
                         name="email">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="input-outline">
+                    <input matInput placeholder="9999999999"  [(ngModel)]="userData.Details.Contact.Phone" required #phone="ngModel"
+                        name="phone">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" *ngIf="phone.invalid&& (phone.dirty || name.touched)" fontIcon="info" class="input-err-icon"></mat-icon>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <input matInput placeholder="Profile Url" [(ngModel)]="userData.Details.Contact.LinkedIn_Profile"
@@ -37,7 +42,7 @@
             <div class="fill-details-bg">
                 <DIV class="Header-and-button fill-details">
                     <h3 style="margin: 0;">Education </h3>
-                    <button mat-mini-fab (click)="openNewInput('Education')">
+                    <button mat-mini-fab (click)="openNewInput('Education')" type="button">
                         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
                     </button>
                 </DIV>
@@ -46,21 +51,21 @@
             <div *ngFor="let education of userData.Details.Education; let i=index">
                 <div class="input-row-1">
                     <mat-form-field appearance="outline">
-                        <input matInput placeholder="Degree" [(ngModel)]="education.Degree" name="degree_{{i}}">
+                        <input matInput placeholder="Degree" [(ngModel)]="education.Degree" name="education{{i}}">
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <input matInput placeholder="Institution" [(ngModel)]="education.Institution"
-                            name="degree_{{i}}">
+                            name="educationdegree_{{i}}">
                     </mat-form-field>
                     <mat-form-field appearance="outline">
-                        <input matInput placeholder="Location" [(ngModel)]="education.Location" name="degree_{{i}}">
+                        <input matInput placeholder="Location" [(ngModel)]="education.Location" name="educationdegree_{{i}}">
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <input matInput placeholder="Graduation Year" [(ngModel)]="education.Graduation_Date"
-                            name="degree_{{i}}">
+                            name="educationdegree_{{i}}">
                     </mat-form-field>
 
-                    <button mat-mini-fab (click)="remove(i)" *ngIf="i>=2">
+                    <button mat-mini-fab (click)="remove(i)" *ngIf="i>=2" type="button">
                         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
                     </button>
                 </div>
@@ -69,7 +74,7 @@
             <!-- Work Experience -->
             <div class="fill-details-bg">
                 <div class="Header-and-button fill-details">
-                    <h3 style="margin: 0;">work Experience </h3> <button mat-mini-fab
+                    <h3 style="margin: 0;">work Experience </h3> <button mat-mini-fab type="button"
                         (click)="openNewInput('work-experience')">
                         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
                     </button>
@@ -106,7 +111,7 @@
                 </div>
                 <div>
 
-                    <button mat-mini-fab (click)="remove(i)" *ngIf="i>=2">
+                    <button mat-mini-fab (click)="remove(i)" *ngIf="i>=2" type="button">
                         Delete
                     </button>
                 </div>
@@ -118,7 +123,7 @@
             <div class="fill-details-bg">
                 <div class="Header-and-button fill-details">
                     <h3 style="margin: 0;">Certifications</h3>
-                    <button mat-mini-fab (click)="openNewInput('Certifications')">
+                    <button mat-mini-fab (click)="openNewInput('Certifications')" type="button">
                         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
                     </button>
                 </div>
@@ -177,7 +182,7 @@
 
             <!-- Footer to Save All Details -->
             <div class="save-button">
-                <button mat-raised-button color="primary" type="submit">
+                <button mat-raised-button color="primary" type="submit" (click)="save()">
                     Save
                 </button>
                 <button mat-raised-button color="primary" *ngIf="formSubmit" (click)="showForm(userData.Name)">

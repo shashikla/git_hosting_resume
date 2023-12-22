@@ -1,0 +1,27 @@
+<p>demo-form-validation works!</p>
+
+<form [formGroup]="userDataForm" (ngSubmit)="submitData()">
+    <div formArrayName="educationDetails">
+      <div *ngFor="let educationDetail of educationDetails.controls; let i=index">
+        <div [formGroupName]="i" class="input-row-1">
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Degree" formControlName="Degree">
+          </mat-form-field>
+          <!-- Other input fields with validation -->
+  
+          <button mat-mini-fab (click)="removeEducationDetail(i)" *ngIf="i >= 2">
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <button mat-mini-fab (click)="addEducationDetail()">
+      Add Education
+    </button>
+  
+    <button mat-raised-button color="primary" type="submit">
+      Save
+    </button>
+  </form>
+  

@@ -21,7 +21,8 @@ import { PlaneTemplateComponent } from './plane-template/plane-template.componen
 import {MatDividerModule} from '@angular/material/divider';
 import { FormResumeComponent } from './form-resume/form-resume.component';
 import {MatChipsModule} from '@angular/material/chips';
-
+import {MatBadgeModule} from '@angular/material/badge';
+import { DemoFormValidationComponent } from './demo-form-validation/demo-form-validation.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {MatChipsModule} from '@angular/material/chips';
     HomepageComponent,
     ResumeComponent,
     PlaneTemplateComponent,
-    FormResumeComponent
+    FormResumeComponent,
+    DemoFormValidationComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatSidenavModule,
     MatDividerModule,
     MatChipsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

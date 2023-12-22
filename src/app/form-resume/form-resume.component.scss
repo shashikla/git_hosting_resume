@@ -102,3 +102,12 @@
     width: 100% !important;
     }
   }
+  .input-outline{
+    position: relative;
+  }
+.input-err-icon{
+  position: absolute;
+    z-index: 1;
+    top: 0;
+    color:red;
+}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserDataService } from '../user-data.service';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Router } from '@angular/router';
@@ -46,7 +46,8 @@ export class FormResumeComponent {
     Details: {
       Contact: {
         Email: '',
-        LinkedIn_Profile: ''
+        LinkedIn_Profile: '',
+        Phone:''
       },
       Education: [{
         Degree: '',
@@ -85,11 +86,26 @@ export class FormResumeComponent {
       Name: ['', Validators.required],
       Current_role: ['', Validators.required],
       Details: this.formBuilder.group({
-        Contact: this.formBuilder.group({
-          Email: ['', [Validators.required, Validators.email]]
-        })
+        Degree: ['', Validators.required],
+        Institution: ['', Validators.required],
+        Location: ['', Validators.required],
+        Graduation_Date: ['', Validators.required]
       })
     })
+  }
+
+  createEducationDetail(): FormGroup {
+    return this.formBuilder.group({
+      Degree: ['', Validators.required],
+      Institution: ['', Validators.required],
+      Location: ['', Validators.required],
+      Graduation_Date: ['', Validators.required]
+    });
+  }
+
+  addEducationDetail(): void {
+    const educationDetails = this.ngForm.get('educationDetails') as FormArray;
+    educationDetails.push(this.createEducationDetail());
   }
 
   showSnackbarTopPosition(content:any, action:any, duration:any) {
@@ -104,18 +120,24 @@ export class FormResumeComponent {
     });
   }
 
+  save(){
+    this.formSubmit = true;
+    // if(this.ngForm.valid){
+    // }else{
+    //   console.log("Missing Data ..");
+    //   this.showSnackbarTopPosition("Fill the required Data","Done",1000)
+    // }
+  }
 
-  submitData() {
+  submitData(event: Event) {
+    event.preventDefault();
+    this.save();
     // this.userData.Details.Work_Experience.map((ele)=>{
     //   // console.log(ele.Responsibilities.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== ''));
     //   return ele.Responsibilities?.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== '');
     // });
-  if(this.ngForm.valid){
-    this.formSubmit = true;
-  }else{
-    console.log("Missing Data ..");
-    this.showSnackbarTopPosition("Fill the required Data","Done",100000)
-  }
+    // this.formSubmit = true;
+
     // data.split('.').map((sentence:any) => sentence.trim()).filter((sentence:any) => sentence !== '');
     // this.userService.addData(this.userData).subscribe(
     //   response => {
